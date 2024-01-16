@@ -6,8 +6,8 @@
     "editor.formatOnSaveMode": "file", // required to format on save
     "files.autoSave": "onFocusChange", // optional but recommended
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true,
-      "source.fixAll": true
+      "source.fixAll.eslint": "explicit",
+      "source.fixAll": "explicit"
     },
     "eslint.validate": ["javascript"],
     "eslint.format.enable": true,
