@@ -34,11 +34,13 @@ module.exports = {
                     if (openingNode?.type === 'JSXOpeningElement') {
                         const idAttribute = openingNode.attributes?.find(attr => attr.name && attr.name.name === 'id');
                         let idValue = idAttribute?.value?.value || "";
-
-                        if (!idValue.startsWith(keyName)) {
+                        if (!idValue.startsWith(keyName) || !idValue.startsWith('common')) {
                             const idLength = idValue?.split('.')?.length || 0;
                             if (idLength > 1) {
                                 idValue = idValue?.split('.')[idLength - 1];
+                            }
+                            if (idValue == "") {
+                                idValue = (new Date()).getTime()
                             }
                             context.report({
                                 node,
@@ -71,8 +73,7 @@ module.exports = {
                         argument?.properties?.forEach(property => {
                             const idAttribute = property.value.properties.find(newProperty => newProperty?.key?.name === 'id')
                             let idValue = idAttribute?.value?.value || "";
-
-                            if (!idValue.startsWith(keyName)) {
+                            if (!idValue.startsWith(keyName) || !idValue.startsWith('common')) {
                                 const idLength = idValue?.split('.')?.length || 0;
                                 if (idLength > 1) {
                                     idValue = idValue?.split('.')[idLength - 1];
@@ -95,7 +96,8 @@ module.exports = {
                     listArguments.forEach(argument => {
                         const idAttribute = argument?.properties?.find(property => property?.key?.name === 'id')
                         let idValue = idAttribute?.value?.value || "";
-                        if (!idValue.startsWith(keyName)) {
+
+                        if (!idValue.startsWith(keyName) || !idValue.startsWith('common')) {
                             const idLength = idValue?.split('.')?.length || 0;
                             if (idLength > 1) {
                                 idValue = idValue?.split('.')[idLength - 1];

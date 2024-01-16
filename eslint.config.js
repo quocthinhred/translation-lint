@@ -6,7 +6,7 @@ const babelEslint = require("@babel/eslint-parser")
 
 module.exports = [
     {
-        files: ["**/*.js", "**/*.jsx"],
+        files: ["src/components/**/*.js"],
         languageOptions: {
             sourceType: "module",
             ecmaVersion: "latest",
